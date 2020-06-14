@@ -2,16 +2,26 @@ package main
 
 import (
 	"crypto/md5"
+	"crypto/sha1"
 	"crypto/sha256"
-	sha5122 "crypto/sha512"
+	sha512 "crypto/sha512"
 	"encoding/hex"
+	"golang.org/x/crypto/md4"
 	"hash"
 	"log"
 	"strings"
 )
 
+func Md4(s string) error {
+	return hashCode(md4.New(), s)
+}
+
 func Md5(s string) error {
 	return hashCode(md5.New(), s)
+}
+
+func Sha1(s string) error {
+	return hashCode(sha1.New(), s)
 }
 
 func Sha256(s string) error {
@@ -19,15 +29,17 @@ func Sha256(s string) error {
 }
 
 func sha384(s string) error {
-	return hashCode(sha5122.New384(), s)
+	return hashCode(sha512.New384(), s)
 }
 
-func sha512(s string) error {
-	return hashCode(sha5122.New(), s)
+func Sha512(s string) error {
+	return hashCode(sha512.New(), s)
 }
 
 func hashCode(target hash.Hash, s string) error {
-	processComm()
+	if processComm() {
+		return nil
+	}
 
 	var hexStr string
 	if f {

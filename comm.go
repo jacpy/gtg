@@ -12,9 +12,13 @@ import (
 const helpTxt = `Usage of %s: 
 gtg <cmd> [options] <content>
 cmd: 
+	md4
 	md5
 	sha256
-	base64
+	sha384
+	sha512
+	Base32
+	Base64
 	jpg2png
 	png2jpg
 	uuid
@@ -50,7 +54,7 @@ func processComm() bool {
 
 	// parse from third args, replace flag.Parse()
 	if err := flag.CommandLine.Parse(os.Args[2:]); err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		return true
 	}
 

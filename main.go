@@ -22,14 +22,20 @@ func main() {
 	var err error = nil
 	cmdName := strings.ToLower(os.Args[1])
 	switch cmdName {
+	case "md4":
+		err = Md4(content)
 	case "md5":
 		err = Md5(content)
+	case "sha1":
+		err = Sha1(content)
 	case "sha256":
 		err = Sha256(content)
 	case "sha384":
 		err = sha384(content)
 	case "sha512":
-		err = sha512(content)
+		err = Sha512(content)
+	case "base32":
+		err = Base32(content)
 	case "base64":
 		err = Base64(content)
 	case "uuid":
